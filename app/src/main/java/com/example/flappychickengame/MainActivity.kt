@@ -12,6 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.flappychickengame.screens.GameScreen
+import com.example.flappychickengame.screens.LeaderboardScreen
+import com.example.flappychickengame.screens.MenuScreen
 import com.example.flappychickengame.ui.theme.FlappyChickenGameTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,11 +27,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FlappyChickenGameTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GameContent(
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                val leaderboardViewModel = viewModel<LeaderboardViewModel>()
+                val navController = rememberNavController()
+                NavHost(navController, startDestination = "menu") {
+                    composable("menu") { MenuScreen(navController) }
+                    composable("game") { GameScreen(navController) }
+                    composable("leaderboard") { LeaderboardScreen(leaderboardViewModel, navController) }
                 }
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                    GameContent(
+//                        modifier = Modifier.padding(innerPadding)
+//                    )
+//                }
             }
         }
     }
