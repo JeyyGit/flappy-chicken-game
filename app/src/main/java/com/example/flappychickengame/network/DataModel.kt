@@ -13,5 +13,5 @@ data class LeaderboardEntry(
     val id: Int,
     val username: String,
     val score: Int,
-    val timestamp: String // Or you can use a Date object or another appropriate data type
+    val timestamp: String
 )
