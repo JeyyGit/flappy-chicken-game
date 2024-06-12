@@ -279,3 +279,4 @@ data class Obstacle(
 
     var passed = false
 }
+

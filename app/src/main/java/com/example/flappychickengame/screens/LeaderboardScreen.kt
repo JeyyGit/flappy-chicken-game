@@ -135,3 +135,4 @@ fun LeaderboardEntryItem(entry: LeaderboardEntry) {
         )
     }
 }
+

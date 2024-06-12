@@ -15,3 +15,4 @@ data class LeaderboardEntry(
     val score: Int,
     val timestamp: String
 )
+
